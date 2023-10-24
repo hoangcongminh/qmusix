@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:qmusix/next_video_list_widget.dart';
+import 'package:qmusix/theme_change_notifier.dart';
 import 'package:qmusix/youtube_player_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,36 +18,103 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Qmusix'),
+        centerTitle: false,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircleAvatar(
+                    child: Icon(Icons.person),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () => context.go("/register"),
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                        ),
+                      ),
+                      const Text("|"),
+                      TextButton(
+                        onPressed: () => context.go("/login"),
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SwitchListTile(
+              title: const Text("Dark Mode"),
+              value: Theme.of(context).brightness == Brightness.dark,
+              onChanged: (value) => context
+                  .read<ThemeChangeNotifier>()
+                  .brightness = value ? Brightness.dark : Brightness.light,
+            )
+          ],
+        ),
       ),
       body: LayoutBuilder(
         builder: (context, contraints) {
           if (contraints.maxWidth < 600) {
             return const VerticalView();
           } else {
-            return const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 100.0,
-                horizontal: 200.0,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: YoutubePlayerWidget(),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox.shrink(),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: NextVideoListWidget(),
-                  ),
-                ],
-              ),
-            );
+            return const HorizontalView();
           }
         },
+      ),
+    );
+  }
+}
+
+class HorizontalView extends StatelessWidget {
+  const HorizontalView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: MediaQuery.sizeOf(context).height * 10 / 100,
+        horizontal: MediaQuery.sizeOf(context).height * 20 / 100,
+      ),
+      child: const Row(
+        children: [
+          Expanded(
+            flex: 3,
+            child: YoutubePlayerWidget(),
+          ),
+          Expanded(
+            flex: 1,
+            child: SizedBox.shrink(),
+          ),
+          Expanded(
+            flex: 3,
+            child: NextVideoListWidget(),
+          ),
+        ],
       ),
     );
   }
@@ -57,54 +128,7 @@ class VerticalView extends StatelessWidget {
     return const Column(
       children: [
         YoutubePlayerWidget(),
-        // NextVideoListWidget(),
-      ],
-    );
-  }
-}
-
-class NextVideoListWidget extends StatelessWidget {
-  const NextVideoListWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const NextVideoItem();
-      },
-    );
-  }
-}
-
-class NextVideoItem extends StatelessWidget {
-  const NextVideoItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const ListTile(
-          leading: FlutterLogo(),
-          title: Text('Title'),
-          subtitle: Text('Artist'),
-        ),
-        Row(
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: const Text("Upvote"),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("Downvote"),
-            ),
-          ],
-        )
+        Expanded(child: NextVideoListWidget()),
       ],
     );
   }
