@@ -1,4 +1,5 @@
-flask
-flask_restx
+Flask==2.3.3
+Flask-Restx
+flask-migrate
 flask_sqlalchemy
 python-dotenv
