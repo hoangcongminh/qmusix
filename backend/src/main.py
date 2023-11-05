@@ -1,9 +1,10 @@
-from config import Config, DevConfig
 from flask import Flask
 
+from .config import Config, DevConfig
+
 # from framework.authentication import register_jwt_manager
-from framework.blueprints import register_blueprint
-from framework.database import register_db
+from .framework.blueprints import register_blueprint
+from .framework.database import register_db
 
 
 def create_app(config: Config = DevConfig):
@@ -15,7 +16,7 @@ def create_app(config: Config = DevConfig):
     return app
 
 
-app = create_app(DevConfig)
+# app = create_app(DevConfig)
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()

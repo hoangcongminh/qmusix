@@ -2,10 +2,11 @@ import os
 
 from dotenv import load_dotenv
 
-load_dotenv()
-
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
-INSTALLED_MODULES = ["app.music"]
+INSTALLED_MODULES = ["src.app.music"]
+DOTENV_PATH = os.path.join(os.path.dirname(BASEDIR), ".env")
+
+load_dotenv(DOTENV_PATH)
 
 
 class Config:
@@ -13,9 +14,6 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL") or "sqlite:///" + os.path.join(
         BASEDIR, "app.db"
     )
-    SECRET_KEY = "ABSDASD"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    FLASK_APP = "main.py"
     INSTALLED_MODULES = INSTALLED_MODULES
 
 

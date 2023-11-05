@@ -1,4 +1,4 @@
-from framework.database import db
+from src.framework.database import db
 
 
 class Music(db.Model):

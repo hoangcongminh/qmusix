@@ -1,5 +1,5 @@
 from flask_restx import Namespace, Resource, fields
-from models.music import Music
+from src.models.music import Music
 
 music_ns = Namespace("music")
 

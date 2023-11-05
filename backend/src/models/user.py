@@ -3,9 +3,9 @@ from uuid import uuid4
 
 import jwt
 from flask import current_app
-from framework.database import db
 from sqlalchemy.ext.hybrid import hybrid_property
-from utils.datetime_util import ict_now
+from src.framework.database import db
+from src.utils.datetime_util import ict_now
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -43,9 +43,9 @@ class User(db.Model):
         # token_age_h = current_app.config.get("TOKEN_EXPIRE_HOURS")
         # token_age_m = current_app.config.get("TOKEN_EXPIRE_MINUTES")
         # expire = now + timedelta(hours=token_age_h, minutes=token_age_m)
-        payload = dict(sub=self.uuid)
+        payload = dict(sub=self.username)
         key = current_app.config.get("SECRET_KEY")
-        return jwt.encode(payload, key, algorithm="HS256")
+        return jwt.encode(payload, key, algorithm="HS256").encode("utf-8")
 
     @staticmethod
     def decode_access_token(access_token):
