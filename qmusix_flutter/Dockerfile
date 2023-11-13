@@ -1,14 +1,23 @@
-FROM ubuntu:latest
+# Install flutter
+FROM ghcr.io/cirruslabs/flutter:stable AS build-env
 
-RUN apt-get update
-RUN apt-get install -y curl git unzip zip
-RUN curl https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_1.22.2-stable.tar.xz | tar -xf -
-ENV PATH "$PATH:/flutter/bin"
+# Run flutter doctor and enable web
+RUN flutter doctor
+RUN flutter config --enable-web
 
-COPY . /app
-WORKDIR /app
+# Copy files to container and build
+USER root
+RUN mkdir /app/
+COPY . /app/
+WORKDIR /app/
 
+RUN flutter doctor 
 
+RUN flutter clean
+RUN flutter pub get
 RUN flutter build web --release --web-renderer html 
 
-CMD ["flutter", "run"]
+FROM nginx
+COPY --from=build-env /app/build/web /usr/share/nginx/html
+
+EXPOSE 80
