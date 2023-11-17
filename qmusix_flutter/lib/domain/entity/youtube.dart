@@ -1,4 +1,4 @@
-class YoutubeModel {
+class Youtube {
   String? title;
   String? thumbnail;
   String? id;
@@ -6,7 +6,7 @@ class YoutubeModel {
   String? publishedAt;
   String? description;
 
-  YoutubeModel({
+  Youtube({
     this.title,
     this.thumbnail,
     this.id,
@@ -15,8 +15,8 @@ class YoutubeModel {
     this.description,
   });
 
-  factory YoutubeModel.fromJson(Map<String, dynamic> json) {
-    return YoutubeModel(
+  factory Youtube.fromJson(Map<String, dynamic> json) {
+    return Youtube(
       title: json['snippet']['title'],
       thumbnail: json['snippet']['thumbnails']['high']['url'],
       id: json['id']['videoId'],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qmusix/bloc/video_player_bloc.dart';
+import 'package:qmusix/presentation/home/bloc/video_player_bloc.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutubePlayerWidget extends StatefulWidget {

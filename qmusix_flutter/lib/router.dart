@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qmusix/pages/homepage.dart';
-import 'package:qmusix/pages/login_page.dart';
-import 'package:qmusix/pages/register_page.dart';
+import 'package:qmusix/presentation/home/homepage.dart';
+import 'package:qmusix/presentation/login/login_page.dart';
+import 'package:qmusix/presentation/register/register_page.dart';
 
 class AppRouter {
   static const homePath = '/home';

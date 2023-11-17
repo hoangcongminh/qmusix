@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qmusix/models/youtube_model.dart';
-import 'package:qmusix/repositories/app_repository.dart';
+import 'package:qmusix/domain/entity/youtube.dart';
+import 'package:qmusix/domain/repository/youtube_repository.dart';
 
 class NextVideoListWidget extends StatefulWidget {
   const NextVideoListWidget({
@@ -16,7 +16,7 @@ class _NextVideoListWidgetState extends State<NextVideoListWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: context.watch<AppRepository>().getYoutbeSearch("mck"),
+      future: context.watch<YoutubeRepository>().getYoutbeSearch("mck"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
@@ -34,7 +34,7 @@ class _NextVideoListWidgetState extends State<NextVideoListWidget> {
 }
 
 class NextVideoItem extends StatelessWidget {
-  final YoutubeModel? youtubeModel;
+  final Youtube? youtubeModel;
   const NextVideoItem({
     super.key,
     required this.youtubeModel,

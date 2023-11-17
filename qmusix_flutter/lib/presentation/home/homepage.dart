@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:qmusix/widgets/next_video_list_widget.dart';
-import 'package:qmusix/providers/theme_change_notifier.dart';
-import 'package:qmusix/widgets/youtube_player_widget.dart';
+import 'package:qmusix/presentation/home/widgets/next_video_list_widget.dart';
+import 'package:qmusix/presentation/home/widgets/youtube_player_widget.dart';
+import 'package:qmusix/presentation/shared/app_settings_notifier.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               title: const Text("Dark Mode"),
               value: Theme.of(context).brightness == Brightness.dark,
               onChanged: (value) => context
-                  .read<ThemeChangeNotifier>()
+                  .read<AppSettingsNotifier>()
                   .brightness = value ? Brightness.dark : Brightness.light,
             )
           ],

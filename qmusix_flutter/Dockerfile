@@ -15,6 +15,8 @@ RUN flutter doctor
 
 RUN flutter clean
 RUN flutter pub get
+RUN flutter pub build_runner build --delete-conflicting-outputs
+
 RUN flutter build web --release --web-renderer html 
 
 FROM nginx
