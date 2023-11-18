@@ -1,5 +1,8 @@
-from flask_cors import CORS
+def cors_config(app):
+    @app.after_request
+    def after_request(response):
+        response.headers.add("Access-Control-Allow-Methods", "*")
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Headers", "*")
+        return response
 
-
-def cors(app):
-    CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
