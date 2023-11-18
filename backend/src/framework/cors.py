@@ -5,3 +5,4 @@ def cors_config(app):
         response.headers.add("Access-Control-Allow-Origin", "*")
         response.headers.add("Access-Control-Allow-Headers", "*")
         return response
+

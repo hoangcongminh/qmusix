@@ -16,9 +16,3 @@ def create_app(config: Config = DevConfig):
     register_blueprint(app)
     cors_config(app)
     return app
-
-
-# app = create_app(DevConfig)
-
-# if __name__ == "__main__":
-#     app.run()
