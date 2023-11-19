@@ -15,7 +15,7 @@ register_namespace.models[register_schema.name] = register_schema
 register_namespace.models[change_password_schema.name] = change_password_schema
 
 
-@register_namespace.route("/")
+@register_namespace.route("")
 class RegisterUser(Resource):
     """Handles HTTP requests to URL: /api/v1/auth/register."""
 

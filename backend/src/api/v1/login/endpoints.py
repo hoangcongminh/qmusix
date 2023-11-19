@@ -8,7 +8,7 @@ login_namespace = Namespace("login")
 login_namespace.models[login_schema.name] = login_schema
 
 
-@login_namespace.route("/")
+@login_namespace.route("")
 class RegisterUser(Resource):
     """Handles HTTP requests to URL: /api/v1/auth/register."""
 
