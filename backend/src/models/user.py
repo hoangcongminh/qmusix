@@ -49,7 +49,7 @@ class User(db.Model):
         # expire = now + timedelta(hours=token_age_h, minutes=token_age_m)
         payload = dict(sub=self.username)
         key = current_app.config.get("SECRET_KEY")
-        return jwt.encode(payload, key, algorithm="HS256").encode("utf-8")
+        return jwt.encode(payload, key, algorithm="HS256")
 
     @staticmethod
     def decode_access_token(access_token):
