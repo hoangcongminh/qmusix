@@ -15,7 +15,8 @@ class Config:
         BASEDIR, "app.db"
     )
     INSTALLED_MODULES = INSTALLED_MODULES
-
+    ERROR_404_HELP=False
+    ERROR_401_HELP=False
 
 class DevConfig(Config):
     DEBUG = True
