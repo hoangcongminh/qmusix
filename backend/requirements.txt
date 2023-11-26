@@ -67,7 +67,7 @@ matplotlib-inline==0.1.6
 mccabe==0.7.0
 mistune==2.0.4
 mypy-extensions==1.0.0
-nb-black==1.0.7
+# nb-black==1.0.7
 nbclassic==0.4.8
 nbclient==0.7.2
 nbconvert==7.2.8

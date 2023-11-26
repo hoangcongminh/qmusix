@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:qmusix/data/datasource/network/params/change_password_param.dart';
 import 'package:qmusix/data/datasource/network/params/login_param.dart';
 
 class AuthService {
@@ -26,6 +27,19 @@ class AuthService {
   Future<void> register(LoginParam params) async {
     try {
       final response = await _dio.post(
+        '/register',
+        data: params.toJson(),
+      );
+
+      jsonDecode(response.data);
+    } catch (e) {
+      throw Exception('Unknown error');
+    }
+  }
+
+  Future<void> changePassword(ChangePasswordParam params) async {
+    try {
+      final response = await _dio.put(
         '/register',
         data: params.toJson(),
       );
