@@ -17,6 +17,7 @@ class Config:
     INSTALLED_MODULES = INSTALLED_MODULES
     ERROR_404_HELP=False
     ERROR_401_HELP=False
+    RESTX_INCLUDE_ALL_MODELS = True
 
 class DevConfig(Config):
     DEBUG = True

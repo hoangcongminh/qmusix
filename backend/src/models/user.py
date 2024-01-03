@@ -3,7 +3,6 @@ from uuid import uuid4
 
 import jwt
 from flask import current_app
-from sqlalchemy.ext.hybrid import hybrid_property
 from src.framework.database import db
 from src.utils.datetime_util import ict_now
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -18,10 +17,6 @@ class User(db.Model):
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     registered_on = db.Column(db.DateTime, default=ict_now)
-
-    # def __repr__(self):
-    #     attributes = ', '.join(f'{name}={value}' for name, value in vars(self).items())
-    #     return f'{self.__class__.__name__}({attributes})'
 
     @property
     def password(self):

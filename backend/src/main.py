@@ -12,7 +12,7 @@ from .framework.database import register_db
 def create_app(config: Config = DevConfig):
     app = Flask(__name__)
     app.config.from_object(config)
-    register_db(app)
     register_blueprint(app)
+    register_db(app)
     cors_config(app)
     return app
